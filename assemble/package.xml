@@ -7,12 +7,12 @@
     <includeBaseDirectory>true</includeBaseDirectory>
     <fileSets>
         <fileSet>
-            <directory>src/main/bin</directory>
-            <outputDirectory>/</outputDirectory>
+            <directory>bin</directory>
+            <outputDirectory>bin</outputDirectory>
         </fileSet>
         <fileSet>
-            <directory>src/main/config</directory>
-            <outputDirectory>config</outputDirectory>
+            <directory>conf</directory>
+            <outputDirectory>conf</outputDirectory>
         </fileSet>
     </fileSets>
     <dependencySets>
