@@ -65,8 +65,9 @@ public class BIOSocketClient {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		String url = "127.0.0.1";
+		String url = "192.168.5.202";
+		String url1 = "127.0.0.1";
 		int port = 8080;
-		new BIOSocketClient(url, port).go();
+		new BIOSocketClient(url1, port).go();
 	}
 }
