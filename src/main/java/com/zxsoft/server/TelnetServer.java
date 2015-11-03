@@ -29,7 +29,7 @@ public class TelnetServer {
 						@Override
 						public void initChannel(SocketChannel ch) throws Exception {
 							// 添加换行解码器 和 字符串解码器解决粘包/拆包问题
-							ch.pipeline().addLast(new LineBasedFrameDecoder(1024));
+							ch.pipeline().addLast(new LineBasedFrameDecoder(1000 * 1024 + 10)); // 1024 = 1K
 							ch.pipeline().addLast(new StringDecoder());
 							ch.pipeline().addLast(new TelnetServerHandler());
 						}

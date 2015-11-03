@@ -16,4 +16,4 @@ else
 fi
 
 echo -e "Starting the service..."
-java $JAVA_MEM_OPTS -classpath $LIB_JARS com.zxsoft.server.TelnetServer > $STDOUT_FILE 2>&1 &
+nohup java $JAVA_MEM_OPTS -classpath $LIB_JARS com.zxsoft.server.TelnetServer 2>&1 &

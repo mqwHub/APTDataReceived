@@ -45,11 +45,12 @@ public class BIOSocketClient {
 
 		@Override
 		public void run() {
-			byte[] req = new String("QUERY_" + i + System.getProperty("line.separator", "\n")).getBytes();
+			String s = gens(1000 * 10);  // 1000 * 1000 = 1M×Ö½Ú
+			byte[] req = new String(s + i + System.getProperty("line.separator", "\n")).getBytes();
 			byte[] rsp = new byte[1024];
 			try {
-				for (int i=0;i<100;i++) {
-					os.write(req);			
+				for (int i = 0;i < 10000; i++) {
+					os.write(req);		
 				}
 //				is.read(rsp);
 //				System.out.println(new String(rsp));
@@ -57,6 +58,14 @@ public class BIOSocketClient {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}
+
+		private String gens(int j) {
+			StringBuffer sb = new StringBuffer();
+			for (int i = 0; i < j; i++) {
+				sb.append('a');
+			}
+			return sb.toString();
 		}
 
 	}
