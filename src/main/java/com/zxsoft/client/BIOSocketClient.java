@@ -19,7 +19,7 @@ public class BIOSocketClient {
 
 	private void go() {
 		ExecutorService exec = Executors.newCachedThreadPool();
-		for (int i = 0; i < 1; i++) {
+		for (int i = 0; i < 100; i++) {
 			exec.execute(new MyThread(i));
 		}
 		exec.shutdown();
@@ -45,11 +45,11 @@ public class BIOSocketClient {
 
 		@Override
 		public void run() {
-			String s = gens(1000 * 10);  // 1000 * 1000 = 1M×Ö½Ú
+			String s = gens(1000 * 1000);  // 1000 * 1000 = 1M×Ö½Ú
 			byte[] req = new String(s + i + System.getProperty("line.separator", "\n")).getBytes();
 			byte[] rsp = new byte[1024];
 			try {
-				for (int i = 0;i < 10000; i++) {
+				for (int i = 0;i < 10; i++) {
 					os.write(req);		
 				}
 //				is.read(rsp);
@@ -77,6 +77,6 @@ public class BIOSocketClient {
 		String url = "192.168.5.202";
 		String url1 = "127.0.0.1";
 		int port = 8080;
-		new BIOSocketClient(url1, port).go();
+		new BIOSocketClient(url, port).go();
 	}
 }

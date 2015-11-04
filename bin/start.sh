@@ -14,6 +14,6 @@ if [ -n "$BITS" ]; then
 else
     JAVA_MEM_OPTS=" -server -Xms1g -Xmx1g -XX:PermSize=128m -XX:SurvivorRatio=2 -XX:+UseParallelGC "
 fi
-
+JAVA_JMX_OPTS=" -Dcom.sun.management.jmxremote.port=1099 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false "
 echo -e "Starting the service..."
-nohup java $JAVA_MEM_OPTS -classpath $LIB_JARS com.zxsoft.server.TelnetServer 2>&1 &
+nohup java $JAVA_MEM_OPTS $JAVA_JMX_OPTS -classpath $LIB_JARS com.zxsoft.server.TelnetServer 2>&1 &

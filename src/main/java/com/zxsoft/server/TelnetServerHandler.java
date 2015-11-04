@@ -19,12 +19,16 @@ public class TelnetServerHandler extends ChannelHandlerAdapter implements KafkaP
 	
 	private int counter;
 	
-	private boolean isWriteKafka = false;
+	private static ExecutorService exec = Executors.newFixedThreadPool(20);
 	
-	private ExecutorService exec = Executors.newCachedThreadPool();
+	private long time = 0l;
 	
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg) {
+		long begin = System.currentTimeMillis();
+		if (time == 0l) {
+			time = begin;
+		}
 		String req = null;
 		String input = null;
 //		if (msg instanceof java.lang.String) {
@@ -38,12 +42,15 @@ public class TelnetServerHandler extends ChannelHandlerAdapter implements KafkaP
 //		}
 		System.out.println("The counter is : " + ++counter);
 		input = req.substring(0, req.length() - lineSeparator.length() );
+		long t = System.currentTimeMillis();
+		System.out.println(t - this.time);
 		// Òì²½Ð´Êý¾Ý
 //		if (!isWriteKafka) {
 //			exec.execute(new MQSendMessageTask(topic, input));			
 //		}
 //		long before = System.currentTimeMillis();
 //		ProducerHolder.getProducer().send(new KeyedMessage(topic, input));
+		exec.execute(new MQSendMessageTask(topic, input));
 //		long after = System.currentTimeMillis();
 //		System.out.println(after - before);
 //		ctx.writeAndFlush(msg);
