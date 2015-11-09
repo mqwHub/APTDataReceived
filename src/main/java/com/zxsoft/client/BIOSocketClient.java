@@ -49,12 +49,13 @@ public class BIOSocketClient {
 			byte[] req = new String(s + i + System.getProperty("line.separator", "\n")).getBytes();
 			byte[] rsp = new byte[1024];
 			try {
-				for (int i = 0;i < 10; i++) {
+				for (;;) {
+					Thread.sleep(5000);
 					os.write(req);		
 				}
 //				is.read(rsp);
 //				System.out.println(new String(rsp));
-				Thread.sleep(100000);
+//				Thread.sleep(100000);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
